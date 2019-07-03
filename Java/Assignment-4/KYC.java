@@ -20,7 +20,6 @@ class KYC
             String input[] = br.readLine().split(" ");
             Calendar c1=Calendar.getInstance();
             Calendar c2=Calendar.getInstance();
-            Date currDate=c2.getTime();
             
             StringTokenizer st = new StringTokenizer(input[0],"-");
             int x[]= new int[3];
@@ -42,7 +41,7 @@ class KYC
             c2.set(Calendar.DATE,y[0]);
             c2.set(Calendar.MONTH,y[1]-1);
             c2.set(Calendar.YEAR,y[2]);
-            
+            Date currDate=c2.getTime();
             if(c1.getTime().after(currDate))
             {
                 System.out.println("No ranges");
@@ -51,15 +50,16 @@ class KYC
             c1.set(Calendar.YEAR, y[2]);
 
             c1.add(Calendar.DATE,-30);
-            System.out.print(df.format(c1.getTime()));
+            System.out.print(df.format(c1.getTime())+" ");
             
             c1.add(Calendar.DATE,60);
             
             if(c1.getTime().after(currDate))
-                System.out.println(" "+df.format(currDate));
+                System.out.println(df.format(currDate));
             else
-                System.out.println(" "+df.format(c1.getTime()));
+                System.out.println(df.format(c1.getTime()));
         }
     }
 
 }
+
