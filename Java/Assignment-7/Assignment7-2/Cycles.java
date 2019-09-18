@@ -69,7 +69,7 @@ class Testing
         System.out.println();
         try
         {
-        //upcast  --- error Cycle class refernce has no method signature of 'balance'
+        //upcast  --- error : Cycle class refernce has no method signature of 'balance'
         // obj[0].balance();
         // obj[1].balance();
         // obj[2].balance();

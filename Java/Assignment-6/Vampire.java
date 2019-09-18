@@ -1,7 +1,7 @@
-import java.util.*;
+import java.util.Arrays;
 class Vampire
 {
-	public static boolean odds(int num)
+	public static boolean isOddLength(int num)
 	{
 		String st=String.valueOf(num);
 		if(st.length()%2!=0)
@@ -35,10 +35,10 @@ class Vampire
 
 	public static void main(String...args)
 	{
-		int num=1260,c=1,i=0,j=0,k=0;
-		while(c<=100)
+		int num=1260,counts=1,i=0,j=0,k=0;
+		while(counts<=100)
 		{
-			if (odds(num))
+			if (isOddLength(num))
 			{	num++;
 				continue;
 			}
@@ -49,8 +49,8 @@ class Vampire
 				if (num%i==0)
 				{
 					if(verify(num,i,j))
-					{	System.out.println(c+"  "+num);
-						c++;
+					{	System.out.println(counts+"  "+num);
+						counts++;
 						break;
 					}
 				}
@@ -63,39 +63,103 @@ class Vampire
 }
 
 
-// public class Permutation 
-// { 
-// 	public static void main(String[] args) 
-// 	{ 
-// 		String str = "1260"; 
-// 		int n = str.length(); 
-// 		Permutation permutation = new Permutation(); 
-// 		permutation.permute(str, 0, n-1); 
-// 	} 
-// 	private void permute(String str, int l, int r) 
-// 	{ 
-// 		if (l == r) 
-// 			System.out.println(str.length()); 
-// 		else
-// 		{ 
-// 			for (int i = l; i <= r; i++) 
-// 			{ 
-// 				str = swap(str,l,i); 
-// 				permute(str, l+1, r); 
-// 				str = swap(str,l,i); 
-// 			} 
-// 		} 
-// 	} 
-
-// 	public String swap(String a, int i, int j) 
-// 	{ 
-// 		char temp; 
-// 		char[] charArray = a.toCharArray(); 
-// 		temp = charArray[i] ; 
-// 		charArray[i] = charArray[j]; 
-// 		charArray[j] = temp; 
-// 		return String.valueOf(charArray); 
-// 	} 
-
-// } 
-// */
+// 1  1260
+// 2  1395
+// 3  1435
+// 4  1530
+// 5  1827
+// 6  2187
+// 7  6880
+// 8  102510
+// 9  104260
+// 10  105210
+// 11  105264
+// 12  105750
+// 13  108135
+// 14  110758
+// 15  115672
+// 16  116725
+// 17  117067
+// 18  118440
+// 19  120600
+// 20  123354
+// 21  124483
+// 22  125248
+// 23  125433
+// 24  125460
+// 25  125500
+// 26  126027
+// 27  126846
+// 28  129640
+// 29  129775
+// 30  131242
+// 31  132430
+// 32  133245
+// 33  134725
+// 34  135828
+// 35  135837
+// 36  136525
+// 37  136948
+// 38  140350
+// 39  145314
+// 40  146137
+// 41  146952
+// 42  150300
+// 43  152608
+// 44  152685
+// 45  153436
+// 46  156240
+// 47  156289
+// 48  156915
+// 49  162976
+// 50  163944
+// 51  172822
+// 52  173250
+// 53  174370
+// 54  175329
+// 55  180225
+// 56  180297
+// 57  182250
+// 58  182650
+// 59  186624
+// 60  190260
+// 61  192150
+// 62  193257
+// 63  193945
+// 64  197725
+// 65  201852
+// 66  205785
+// 67  211896
+// 68  213466
+// 69  215860
+// 70  216733
+// 71  217638
+// 72  218488
+// 73  226498
+// 74  226872
+// 75  229648
+// 76  233896
+// 77  241564
+// 78  245182
+// 79  251896
+// 80  253750
+// 81  254740
+// 82  260338
+// 83  262984
+// 84  263074
+// 85  284598
+// 86  284760
+// 87  286416
+// 88  296320
+// 89  304717
+// 90  312475
+// 91  312975
+// 92  315594
+// 93  315900
+// 94  319059
+// 95  319536
+// 96  326452
+// 97  329346
+// 98  329656
+// 99  336550
+// 100  336960

@@ -1,12 +1,10 @@
-/**
-     * Given the appliction date and the current date, this program provides the allowable date range for the form date.
-     * 
-     * Input : Number of Test Cases followed by the registration date and current date(dd-mm-yyyy dd-mm-yyyy ).
-     * Output: Range of dates for KYC form in format dd-mm-yyyy dd-mm-yyyy 
-     */
-import java.io.*;
-import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.StringTokenizer;
 class KYC
 {
     public static void main(String args[])throws IOException

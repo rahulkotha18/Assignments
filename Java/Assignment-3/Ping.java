@@ -1,52 +1,50 @@
-/* Assignment -3
 
-Descrition : This program will ping any host ( given as input ) and computes 
-							the median of the time taken to ping.
-Uses the system ping utility.
-
-Input : URL of the host ( Eg:  google.com or yahoo.com ) 
-				and number of times (n) to ping for median calculation
-Output: 'n' lines of response times in millisecs and median 
-
-
-*/
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.regex.*;
-import java.util.*;
+import java.util.regex.Pattern;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 public class Ping {
-  public static void runCommand(String command,int times) {
+  public static void runCommand(String command,int numberoftimes)
+  {
 		try
 		{
 			Process p = Runtime.getRuntime().exec(command);
 			BufferedReader inputStream = new BufferedReader(
 					new InputStreamReader(p.getInputStream()));
 			ArrayList<Float> f=new ArrayList<>();
-			String s  = "";
-			String ms = "";
-			float pp  = 0;
-			int len = times, flag = 0;
-			while ((s = inputStream.readLine()) != null)
+			String response  = "";
+			String pingtime = "";
+			int len = numberoftimes;
+			boolean unreachable=false;
+			while ((response = inputStream.readLine()) != null)
 			{
-				if(Pattern.matches(".*time=.*",s)) 
+				if(Pattern.matches(".*time=.*",response)) 
 				{
-					String ss[] = s.split(" ");
-				    ms=ss[7].substring(5);
-				    System.out.println(s+"\n"+ms);
-					f.add(Float.parseFloat(ms));
-					flag = 1;
+					String ss[] = response.split(" ");
+				    pingtime=ss[7].substring(5);
+				    System.out.println(pingtime+" ms");
+					f.add(Float.parseFloat(pingtime));
+					unreachable=true;
 				}
 			}
 			Collections.sort(f);
-			if (flag == 0)
-			 System.out.println("unreachable");  // if host is unavailable
+			if (!unreachable)
+			 System.out.println("unreachable");
 			else
-			{   if(len%2 == 0)
-				System.out.println( (float) (f.get(len/2) + f.get(len/2 -1)) /2  );
+			{   
+				float medainTime=0;
+				if(len%2 == 0)
+					medainTime=( f.get(len/2) + f.get(len/2 -1) ) /2 ;
 				else
-				System.out.println( (float) f.get(len/2) );
+					medainTime=(float) f.get(len/2);
+				System.out.println("Median of time taken to ping host:"+medainTime+" ms");
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
+			System.out.println(" error while executing ping command");
 			e.printStackTrace();
 		}
 	}
@@ -56,7 +54,7 @@ public class Ping {
 		System.out.println("enter url of host");
 		String url = sc.next();
 		System.out.println("enter number of times for ping (eg:1-20)");
-		int t = sc.nextInt();
-		runCommand("ping -c"+t+" "+url,t);
+		int numberoftimes = sc.nextInt();
+		runCommand("ping -c"+numberoftimes+" "+url,numberoftimes);
 	}
 }

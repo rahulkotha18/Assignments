@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.Scanner;
 class Ex1 extends Exception
 {
     public Ex1(String s)
