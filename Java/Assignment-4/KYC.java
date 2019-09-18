@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.StringTokenizer;
-class KYC
+public class KYC
 {
     public static void main(String args[])throws IOException
     {
@@ -16,46 +16,48 @@ class KYC
         {
             t--;
             String input[] = br.readLine().split(" ");
-            Calendar c1=Calendar.getInstance();
-            Calendar c2=Calendar.getInstance();
+            Calendar applyDate=Calendar.getInstance();
+            Calendar renewalDate=Calendar.getInstance();
             
             StringTokenizer st = new StringTokenizer(input[0],"-");
-            int x[]= new int[3];
+            int apply[]= new int[3];
             int i=0;
             while(st.hasMoreTokens())
-                x[i++] = Integer.parseInt(st.nextToken());
+                apply[i++] = Integer.parseInt(st.nextToken());
 
-            c1.set(Calendar.DATE,x[0]);
-            c1.set(Calendar.MONTH,x[1]-1);
-            c1.set(Calendar.YEAR,x[2]);
+            applyDate.set(Calendar.DATE,apply[0]);
+            applyDate.set(Calendar.MONTH,apply[1]-1);
+            applyDate.set(Calendar.YEAR,apply[2]);
 
 
             st = new StringTokenizer(input[1],"-");
-            int y[]= new int[3];
+            int renewal[]= new int[3];
             i=0;
             while(st.hasMoreTokens())
-                y[i++] = Integer.parseInt(st.nextToken());
+                renewal[i++] = Integer.parseInt(st.nextToken());
 
-            c2.set(Calendar.DATE,y[0]);
-            c2.set(Calendar.MONTH,y[1]-1);
-            c2.set(Calendar.YEAR,y[2]);
-            Date currDate=c2.getTime();
-            if(c1.getTime().after(currDate))
+            renewalDate.set(Calendar.DATE,renewal[0]);
+            renewalDate.set(Calendar.MONTH,renewal[1]-1);
+            renewalDate.set(Calendar.YEAR,renewal[2]);
+
+            Date currDate=renewalDate.getTime();
+
+            if(applyDate.getTime().after(currDate))
             {
                 System.out.println("No ranges");
                 continue;
             }
-            c1.set(Calendar.YEAR, y[2]);
+            applyDate.set(Calendar.YEAR, renewal[2]);
 
-            c1.add(Calendar.DATE,-30);
-            System.out.print(df.format(c1.getTime())+" ");
+            applyDate.add(Calendar.DATE,-30);
+            System.out.print(df.format(applyDate.getTime())+" ");
             
-            c1.add(Calendar.DATE,60);
+            applyDate.add(Calendar.DATE,60);
             
-            if(c1.getTime().after(currDate))
+            if(applyDate.getTime().after(currDate))
                 System.out.println(df.format(currDate));
             else
-                System.out.println(df.format(c1.getTime()));
+                System.out.println(df.format(applyDate.getTime()));
         }
     }
 
