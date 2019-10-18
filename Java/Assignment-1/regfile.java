@@ -5,6 +5,7 @@ of the matching files found.
 To stop the program give input as 'D'
 Input : a regular expression of the file
 Output: all files matching regular expression with their absolute paths
+This is a good program to start coding in java
 */
 import java.io.File;
 import java.util.regex.*;
